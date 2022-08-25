@@ -1,0 +1,8 @@
+{
+    "db_info" : {
+        "host" : "board.cqju2ea9ktbm.ap-northeast-2.rds.amazonaws.com",
+        "user" : "admin",
+        "password" : "gmlcjfdl",
+        "database" : "board"
+    }
+}
