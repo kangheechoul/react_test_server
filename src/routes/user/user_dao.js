@@ -1,5 +1,4 @@
-const mysql = require("mysql");
-const getPool = require("../../db_conn");
+const db_conn = require("../../db_conn");
 
 
 class user_dao {
@@ -8,37 +7,26 @@ class user_dao {
         this.count = 0;
         this.list = [];
         this.info = {};
+        this.affectedRows = 0;
     }
 
-    getList(where){
-        this.count = 4;
-        this.list = [
-            {
-                "schedule_idx" : "0",
-                "name" : "테스트 0",
-                "date" : "2022-08-26"
-            },
-            {
-                "schedule_idx" : "1",
-                "name" : "테스트 1",
-                "date" : "2022-08-27"
-            },
-            {
-                "schedule_idx" : "2",
-                "name" : "테스트 2",
-                "date" : "2022-08-28"
-            },
-            {
-                "schedule_idx" : "3",
-                "name" : "테스트 3 ",
-                "date" : "2022-08-29"
-            },
-        ];
-        return {
-            "count" : this.count,
-            "list" : this.list
-        };
+    get_info(where){
+        
     }
+
+    get_list(where, order){
+        
+    }
+
+    async add_user(row, where){
+        let sql = `
+            insert into tb_user ( id, password, name ) values ( 'id' , 'password' , '테스트' )
+        `;
+        let data = await db_conn.send_query(sql);
+        this.affectedRows = data.affectedRows;
+        return this.affectedRows;
+    }
+   
 }
 
 module.exports = user_dao;

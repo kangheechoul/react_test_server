@@ -3,7 +3,8 @@ const router = require("express").Router();
 const service = require("./user_service");
 
 
-router.get("/list", service.getList);
+router.get("/list", service.get_list);
+router.post("/add", service.add_user)
 
 
 module.exports = router;
