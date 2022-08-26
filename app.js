@@ -4,9 +4,13 @@ const app = express();
 const path = require("path");
 const cors = require("cors");
 
+const api = require("./src/routes/index");
+
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.use("/api", api);
 
 app.get("*", (req, res)=>{
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
