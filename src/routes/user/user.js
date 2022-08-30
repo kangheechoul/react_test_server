@@ -4,7 +4,11 @@ const service = require("./user_service");
 
 
 router.get("/list", service.get_list);
-router.post("/add", service.add_user)
+router.get("/add", service.add_user)
+
+router.get("/", (req,res)=>{
+    res.send("user 페이지");
+});
 
 
 module.exports = router;

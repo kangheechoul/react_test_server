@@ -18,7 +18,7 @@ class user_dao {
         
     }
 
-    async add_user(row, where){
+    async add_user(){
         let sql = `
             insert into tb_user ( id, password, name ) values ( 'id' , 'password' , '테스트' )
         `;

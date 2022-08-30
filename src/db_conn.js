@@ -9,24 +9,12 @@ module.exports ={
         let data = null;
         try{
             [data] = await conn.query(sql);
-            await conn.release();
+            conn.release();
         }catch(e){
             data = new Error(e);
         }
         
         return data;
     },
-    // getPool : (callback) =>{
-    //     pool.getConnection(function(err, conn){
-    //         if(err){
-    //             console.log(err);
-    //         }else{
-    //             console.log("db 접속");
-    //             callback(conn);
-    //             conn.release();
-    //         }
-            
-    //     })
-    // },
 }
 
