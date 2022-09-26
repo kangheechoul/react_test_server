@@ -8,7 +8,7 @@ module.exports ={
 
         let data = null;
         try{
-            [data] = await conn.query(sql);
+            [data] = await conn.query(sql, param);
             conn.release();
         }catch(e){
             data = new Error(e);

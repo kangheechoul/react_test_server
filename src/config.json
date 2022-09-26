@@ -3,6 +3,7 @@
         "host" : "board2.cqju2ea9ktbm.ap-northeast-2.rds.amazonaws.com",
         "user" : "admin",
         "password" : "gmlcjfdl",
-        "database" : "board"
+        "database" : "board",
+        "dateStrings": "date"
     }
 }

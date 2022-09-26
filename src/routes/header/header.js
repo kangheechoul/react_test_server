@@ -4,7 +4,6 @@ const service = require("./header_service");
 
 
 router.get("/get_menu", service.get_menu);
-router.get("/get_slide_menu", service.get_slide_menu);
 
 router.get("/", (req,res)=>{
     res.send("");
