@@ -25,8 +25,6 @@ exports.add_user = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     let dao = new user_dao();
     
-    console.log(req.body);
-    
     let where = {
         "u.id" : req.body.id,
         "u.password" : req.body.password
@@ -42,7 +40,8 @@ exports.login = async (req, res, next) => {
         let return_data = {
             code:"1",
             message:"로그인 성공",
-            token : token
+            token : token,
+            id : data[0].user_idx
         };
         let user_login_idx = await dao.add_login_history(data[0].user_idx,req.headers['user-agent']);
         if(user_login_idx > 0){
@@ -56,3 +55,8 @@ exports.login = async (req, res, next) => {
 exports.logout = (req, res, next) => {
 
 } 
+
+exports.token_check = async (req, res, next) => {
+    console.log(req.headers.authorization);
+    let result = auth.jwt_check(req.headers.authorization);
+}

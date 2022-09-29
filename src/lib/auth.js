@@ -22,8 +22,17 @@ class Auth {
     jwt_check = (token) => {
         let return_data = ""; 
         try{
-            return_data = jwt.verify(token,this.jwt_key);
-
+            let hash_data = jwt.verify(token,this.jwt_key);
+            delete hash_data.exp;
+            delete hash_data.iss;
+            
+            
+            return_data={
+                code : "001",
+                id : hash_data.user_idx,
+                token : this.create_jwt(hash_data)
+            }
+            
             return return_data;
 
         }catch(error){
@@ -31,6 +40,8 @@ class Auth {
                 return_data = {code:"401" , message:"유효하지 않은 토큰입니다."};
             }else if(error.name == "TokenExpiredError"){
                 return_data = {code:"419" , message:"토큰이 만료되었습니다"};
+            }else{
+                console.log(error);
             }
             return return_data;
 
