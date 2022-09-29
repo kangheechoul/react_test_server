@@ -14,7 +14,7 @@ class Auth {
 
         return_data = jwt.sign(sign_data,this.jwt_key,{
             expiresIn:"15m",
-            issuer: "관리자",
+            issuer: data.name,
         });
         return return_data;
     }

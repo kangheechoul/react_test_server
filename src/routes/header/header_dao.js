@@ -23,18 +23,14 @@ class header_dao {
         tb_menu as m
         left join tb_menu_group as mg
         on m.menu_group_idx = mg.menu_group_idx
-        order by mg.level asc
+        order by mg.level asc, m.level asc
         `;
 
         let data = await db_conn.send_query(sql);
         this.list = data;
         return this.list;
     }
-    async get_slide_menu(){
-        let sql = `select`;
-        return 1;
-    }
-
+    
     async add_user(){
         let sql = `
             insert into tb_user ( id, password, name ) values ( 'id' , 'password' , '테스트' )
@@ -43,7 +39,6 @@ class header_dao {
         this.affectedRows = data.affectedRows;
         return this.affectedRows;
     }
-   
 }
 
 module.exports = header_dao;

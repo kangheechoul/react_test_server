@@ -22,12 +22,3 @@ exports.get_menu = async (req, res, next) => {
 
     res.send(send_data);
 }
-
-exports.get_slide_menu = async (req, res, next) => {
-
-    let dao = new header_dao();
-
-    let data = await dao.get_slide_menu();
-    let send_data = data;
-    res.send(send_data);
-}

@@ -28,8 +28,8 @@ exports.login = async (req, res, next) => {
     console.log(req.body);
     
     let where = {
-        "u.id" : req.params.id,
-        "u.password" : req.params.password
+        "u.id" : req.body.id,
+        "u.password" : req.body.password
     };
 
     let where_info = lib.create_where(where);
