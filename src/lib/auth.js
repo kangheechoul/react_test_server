@@ -19,6 +19,10 @@ class Auth {
         return return_data;
     }
 
+    jwt_decode = (token) => {
+        return jwt.decode(token);
+    }
+
     jwt_check = (token) => {
         let return_data = ""; 
         try{

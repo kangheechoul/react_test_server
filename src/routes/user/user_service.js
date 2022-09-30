@@ -41,7 +41,8 @@ exports.login = async (req, res, next) => {
             code:"1",
             message:"로그인 성공",
             token : token,
-            id : data[0].user_idx
+            id : data[0].user_idx,
+            data : data[0]
         };
         let user_login_idx = await dao.add_login_history(data[0].user_idx,req.headers['user-agent']);
         if(user_login_idx > 0){
@@ -56,7 +57,32 @@ exports.logout = (req, res, next) => {
 
 } 
 
+exports.user_info = async (req, res, next) => {
+    let check = auth.jwt_check(req.headers.authorization);
+
+    if(check.code !== "001"){
+        // 유저 정보없음 ( 오류 )
+        res.send(check);
+    }else{
+        let data = auth.jwt_decode(check.token);
+        let dao = new user_dao();
+
+        let where = {
+            "u.user_idx" : data.user_idx
+        };
+        let result = await dao.get_info(lib.create_where(where));
+        if(result == undefined || result == null){
+            // 유저 정보없음 ( 오류 )
+            res.send({code:"999", token:check});
+        }else{
+            res.send({code:"001", data:result, token:check.token});
+        }
+    }
+
+} 
+
 exports.token_check = async (req, res, next) => {
     console.log(req.headers.authorization);
     let result = auth.jwt_check(req.headers.authorization);
+    res.send(result);
 }

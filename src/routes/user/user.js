@@ -3,7 +3,8 @@ const router = require("express").Router();
 const service = require("./user_service");
 
 
-router.post("/check", service.token_check);
+// router.post("/check", service.token_check);
+router.post("/info", service.user_info);
 router.post("/login", service.login);
 router.get("/list", service.get_list);
 router.get("/add", service.add_user)

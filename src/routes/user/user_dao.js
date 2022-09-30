@@ -11,8 +11,14 @@ class user_dao {
         this.idx = 0;
     }
 
-    get_info(where){
-
+    async get_info(where_info){
+        let sql = 
+        `
+            select * from tb_user as u where u.delete_flag = 'N' ${where_info.where}
+        `;
+        let data = await db_conn.send_query(sql, where_info.bind);
+        this.info = data[0];
+        return this.info;
     }
 
     // user 리스트 조회
@@ -76,6 +82,7 @@ class user_dao {
         this.idx = data.insertId;
         return this.idx;
     }
+
 }
 
 module.exports = user_dao;
