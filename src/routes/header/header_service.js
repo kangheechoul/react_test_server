@@ -13,10 +13,10 @@ exports.get_menu = async (req, res, next) => {
                 "title" : a.menu_title,
                 "idx" : a.menu_group_idx,
                 "level" : a.menu_title_level,
-                "list" : [{"idx" : a.menu_idx, "name" : a.name}],
+                "list" : [{"idx" : a.menu_idx, "name" : a.name, "link" : a.link}],
             });
         }else{
-            send_data[idx].list.push({"idx": a.menu_idx, "name" : a.name});
+            send_data[idx].list.push({"idx": a.menu_idx, "name" : a.name, "link" : a.link});
         }
     });
 

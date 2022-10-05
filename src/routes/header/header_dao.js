@@ -17,12 +17,15 @@ class header_dao {
         m.menu_group_idx,
         m.name,
         m.level,
+        b.link,
         mg.name as 'menu_title',
         mg.level as 'menu_title_level'
         from 
         tb_menu as m
         left join tb_menu_group as mg
         on m.menu_group_idx = mg.menu_group_idx
+        left join tb_board as b
+        on m.menu_idx = b.menu_idx
         order by mg.level asc, m.level asc
         `;
 
